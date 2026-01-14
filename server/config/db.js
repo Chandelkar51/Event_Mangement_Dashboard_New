@@ -1,14 +1,12 @@
-const mongoose =require("mongoose")
-// const register =require("../init/dbInit.js")
+import mongoose from "mongoose"
+import { env } from "./env.js"
 
-exports.dbConnection=async()=>{
-    try{
-        await mongoose.connect(`${process.env.CLUSTER_URL}`);
-        console.log("Database connected")
-    }
-    catch(err){
-        console.log("DB Error", err);
-    }
+export const connectDB = async () => {
+  try {
+    await mongoose.connect(env.MONGO_URI)
+    console.log("✅ MongoDB Connected")
+  } catch (err) {
+    console.error("❌ DB Error", err)
+    process.exit(1)
+  }
 }
-// register();
-// exports.dbConnection;

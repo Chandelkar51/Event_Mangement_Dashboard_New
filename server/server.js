@@ -1,17 +1,8 @@
-const express = require('express')
+import app from "./app.js"
+import { connectDB } from "./config/db.js"
+import { env } from "./config/env.js"
 
-const app = express();
-const PORT = 5000;
-
-// middleware
-app.use(express.json());
-
-// test route
-app.get("/", (req, res) => {
-  res.send("🚀 Express server is running");
-});
-
-// start server
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
-});
+connectDB()
+app.listen(env.PORT, () =>
+  console.log(`🚀 Server running on http://localhost:${env.PORT}`)
+)
